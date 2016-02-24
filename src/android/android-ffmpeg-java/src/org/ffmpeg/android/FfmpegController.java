@@ -279,6 +279,12 @@ public class FfmpegController {
 		{
 			cmd.add(Argument.VIDEOCODEC);
 			cmd.add(out.videoCodec);
+
+			if (out.videoCodec == "libx264")
+			{
+				cmd.add("-preset");
+				cmd.add("ultrafast"); // needed b/c libx264 doesn't utilize all CPU cores
+			}
 		}
 
 		if (out.videoBitStreamFilter != null)
